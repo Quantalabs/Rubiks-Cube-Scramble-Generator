@@ -49,15 +49,24 @@
 			
 			for(var i = 0; i<scramble_length; i++) {
 				var prime = Math.round(Math.random())
-				var option = Math.floor(Math.random() * scrable_options.length)
+				var option = Math.floor(Math.random() * scramble_options.length)
 
 				if(prime == 0) {
-					scramble.push(scrable_options[option] + "'")
-					scramble.push(" ")
+					if(scramble[i] == scramble[i-1]) {
+						prime = Math.round(Math.random())
+						option = Math.floor(Math.random() * scramble_options.length)
+						scramble.push(scramble_options[option] + "' ")
+					} else {
+						scramble.push(scramble_options[option] + "' ")
+					}
 				}
 				else {
-					scramble.push(scrable_options[option])
-					scramble.push(" ")
+					if(scramble[i] == scramble[i-1]) {
+						scramble[i-1] = scramble_options[option] + "2 "
+					} else {
+						scramble.push(scramble_options[option])
+						scramble.push(" ")
+					}
 				}
 			}
 
