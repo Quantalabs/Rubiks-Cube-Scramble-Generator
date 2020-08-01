@@ -36,15 +36,15 @@
 		var scramble_button = document.getElementById("sb")
 		
 		var scramble = function () {
-			var scrable_options = ["r","l","d","u","f","b"]
+			var scramble_options = ["r","l","d","u","f","b"]
 			var scramble_length = document.getElementById("scramble-length").value
 			var scramble = []
 			var FRU = document.getElementById("FRU")
 			
 			if(FRU.checked) {
-				scrable_options = ["r","f","u"]
+				scramble_options = ["r","f","u"]
 			} else {
-				scrable_options = ["r","l","d","u","f","b"]
+				scramble_options = ["r","l","d","u","f","b"]
 			}
 			
 			for(var i = 0; i<scramble_length; i++) {
@@ -69,7 +69,20 @@
 					}
 				}
 			}
+			for(var i = 0; i<scramble.length; i++) {
+				if(scramble[i] == scramble[i+2] && scramble[i] == scramble[i+1]) {
+					var prime = Math.round(Math.random())
+					var option = Math.floor(Math.random() * scramble_options.length)
 
+					if(prime == 0) {
+						scramble[i+2] = scramble_options[option] + "' "
+					}
+					else {
+						scramble[i+2] = scramble_options[option] + " "
+					}
+				}
+			}
+			
 			document.getElementById("scramble").textContent = scramble.join("")
 		}
 		
