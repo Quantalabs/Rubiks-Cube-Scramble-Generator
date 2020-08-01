@@ -10,7 +10,7 @@
 				font-family: "Nunito", serif;
 			}
 			div{
-				margin-top: 44vh;
+				margin-top: 30vh;
 				margin-bottom: 44vh;
 				margin-right: auto;
 				margin-left: auto;
@@ -21,6 +21,12 @@
   </head>
   <body>
 		<input type="number" value="25" id="scramble-length">
+		<br>
+		<br>
+		<input type="checkbox" value="FRU" id="FRU" onclick="terms_change(this)">
+		<label> FRU only</label>
+		<br>
+		<br>
 		<button id="sb" type="submit">Scramble</button>
 		<div id="scramble">
 			
@@ -33,9 +39,17 @@
 			var scrable_options = ["r","l","d","u","f","b"]
 			var scramble_length = document.getElementById("scramble-length").value
 			var scramble = []
+			var FRU = document.getElementById("FRU")
+			
+			if(FRU.checked) {
+				scrable_options = ["r","f","u"]
+			} else {
+				scrable_options = ["r","l","d","u","f","b"]
+			}
+			
 			for(var i = 0; i<scramble_length; i++) {
 				var prime = Math.round(Math.random())
-				var option = Math.floor(Math.random() * 6)
+				var option = Math.floor(Math.random() * scrable_options.length)
 
 				if(prime == 0) {
 					scramble.push(scrable_options[option] + "'")
